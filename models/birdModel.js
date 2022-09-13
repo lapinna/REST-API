@@ -23,9 +23,6 @@ const BirdSchema = new mongoose.Schema({
   isBoss: {
     type: Boolean,
     default: false
-  },
-  placeId: {
-    type: String
   }
 });
 

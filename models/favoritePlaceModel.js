@@ -23,7 +23,10 @@ const FavoritePlaceSchema = new mongoose.Schema({
     min: 0,
     max: 10,
     required: true
-  }
+  },
+  animal: [
+    {}
+  ]
 });
 
 export default mongoose.model("FavoritePlace", FavoritePlaceSchema);

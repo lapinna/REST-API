@@ -27,12 +27,13 @@ const CatSchema = new mongoose.Schema({
   favoriteToys: {
     type: [String]
   },
-  isBoss: {
+  canFly: {
     type: Boolean,
     default: false
   },
-  placeId: {
-    type: String
+  isBoss: {
+    type: Boolean,
+    default: false
   }
 });
 

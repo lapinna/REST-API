@@ -27,11 +27,12 @@ const DogSchema = new mongoose.Schema({
   favoriteToys: {
     type: [String]
   },
+  canFly: {
+    type: Boolean,
+    default: false
+  },
   isBoss: {
     type: Boolean
-  },
-  placeId: {
-    type: String
   }
 });
 
