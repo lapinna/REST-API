@@ -25,7 +25,10 @@ const FavoritePlaceSchema = new mongoose.Schema({
     required: true
   },
   animal: [
-    {}
+    {
+      modelName: String,
+      id: String
+    }
   ]
 });
 

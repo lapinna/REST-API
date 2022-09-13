@@ -1,4 +1,7 @@
 import favoritePlaceModel from "../models/favoritePlaceModel.js";
+import birdModel from "../models/birdModel.js";
+import catModel from "../models/catModel.js";
+import dogModel from "../models/dogModel.js";
 
 export const create = async (req, res) => {
   try {
@@ -57,6 +60,28 @@ export const deleteAll = async (req, res) => {
   try {
     await favoritePlaceModel.deleteMany({});
     res.status(200).send("All resources deleted");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllAnimals = async (req, res) => {
+  try {
+    const place = await favoritePlaceModel.findById(req.params.id);
+    console.log("PLACE", place);
+    const animals = await Promise.all(
+      place.animal.map(async (animal) => {
+        let modelName = animal.modelName;
+        if (modelName === "bird") {
+          return await birdModel.findById(animal.id);
+        } else if (modelName === "cat") {
+          return await catModel.findById(animal.id);
+        } else if (modelName === "dog") {
+          return await dogModel.findById(animal.id);
+        }
+      })
+    );
+    res.status(200).json(animals);
   } catch (error) {
     console.error(error);
   }
