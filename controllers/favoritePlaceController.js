@@ -68,7 +68,6 @@ export const deleteAll = async (req, res) => {
 export const getAllAnimals = async (req, res) => {
   try {
     const place = await favoritePlaceModel.findById(req.params.id);
-    console.log("PLACE", place);
     const animals = await Promise.all(
       place.animal.map(async (animal) => {
         let modelName = animal.modelName;
