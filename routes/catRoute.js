@@ -1,12 +1,20 @@
 import express from "express";
+import {
+    create,
+    getAll,
+    getById,
+    updateById,
+    deleteById,
+    deleteAll,
+  } from "../controllers/catController.js";
 
 const router = express.Router();
 
-router.post("/cats", );
-router.get("/cats", );
-router.get("/cats/:id", );
-router.put("/cats/:id", );
-router.delete("/cats/:id", );
-router.delete("/cats", );
+router.post("/cats", create);
+router.get("/cats", getAll);
+router.get("/cats/:id", getById);
+router.put("/cats/:id", updateById);
+router.delete("/cats/:id", deleteById);
+router.delete("/cats", deleteAll);
 
 export default router;

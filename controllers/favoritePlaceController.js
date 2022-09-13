@@ -1,0 +1,63 @@
+import favoritePlaceModel from "../models/favoritePlaceModel.js";
+
+export const create = async (req, res) => {
+  try {
+    const place = new favoritePlaceModel({ ...req.body });
+    await place.save();
+    res.status(201).send("Resource created");
+  } catch (error) {
+    res.status(405).send(error);
+    console.error(error);
+  }
+};
+
+export const getAll = async (req, res) => {
+  try {
+    const places = await favoritePlaceModel.find({});
+    res.status(202).json(places);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getById = async (req, res) => {
+  try {
+    const place = await favoritePlaceModel.findById(req.params.id);
+    res.status(200).json(place);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateById = async (req, res) => {
+  try {
+    const updatedPlace = await favoritePlaceModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedPlace);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteById = async (req, res) => {
+  try {
+    await favoritePlaceModel.findByIdAndDelete(req.params.id);
+    res.status(200).send("Resource deleted");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteAll = async (req, res) => {
+  try {
+    await favoritePlaceModel.deleteMany({});
+    res.status(200).send("All resources deleted");
+  } catch (error) {
+    console.error(error);
+  }
+};
